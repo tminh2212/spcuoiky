@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý File mô phỏng</title>
+    <style>
+        body { background: #f5f5f5; font-family: Arial, sans-serif; }
+        .container { width: 340px; margin: 80px auto; padding: 24px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+        h2 { text-align: center; margin-bottom: 18px;}
+        label { display: block; margin-bottom: 6px; font-weight: bold;}
+        input[type="email"], input[type="password"], input[type="text"] { width: 100%; padding: 8px; margin-bottom: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;}
+        button { width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;}
+        button:hover { background: #0056b3;}
+        #file-manager, #stats-page { display: none; width: 400px; margin: 40px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+        .tree { margin-top: 18px; }
+        .tree ul { list-style: none; padding-left: 18px; }
+        .tree li { margin: 6px 0; }
+        .tree .folder { font-weight: bold; color: #007bff; cursor: pointer; }
+        .tree .file { color: #333; cursor: pointer; }
+        .actions { margin-top: 18px; display: flex; gap: 8px;}
+        .actions button { width: auto; padding: 6px 12px; font-size: 14px;}
+        #logoutBtn { margin-top: 18px; background: #6c757d;}
+        #history { margin-top: 18px; font-size: 14px; background: #f8f9fa; padding: 12px; border-radius: 6px;}
+        .inline-btn { display:inline-block; margin-left:6px; padding:2px 8px; font-size:13px; border-radius:4px; border:none; background:#eee; cursor:pointer;}
+        .inline-btn:hover { background:#d0e7ff;}
+        .selected { background: #eaf4ff; }
+    </style>
+</head>
+<body>
+    <!-- Trang đăng nhập/đăng ký -->
+    <div class="container" id="login-container">
+        <h2>Đăng nhập / Đăng ký</h2>
+        <form id="loginForm" autocomplete="off">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Đăng nhập</button>
+            <button type="button" id="registerBtn" style="margin-top:8px;background:#28a745;">Đăng ký</button>
+        </form>
+    </div>
+
+    <!-- Trang quản lý file -->
+    <div id="file-manager">
+        <h2>Quản lý File mô phỏng</h2>
+        <div class="actions">
+            <button id="addFileBtn">+ File</button>
+            <button id="addFolderBtn">+ Thư mục</button>
+            <button id="statsBtn" style="background:#17a2b8;">Thống kê</button>
+        </div>
+        <div class="tree" id="treeView"></div>
+        <button id="logoutBtn">Đăng xuất</button>
+    </div>
+
+    <!-- Trang thống kê -->
+    <div id="stats-page">
+        <h2>Thống kê</h2>
+        <div id="stats"></div>
+        <div id="history"></div>
+        <button id="backBtn" style="margin-top:18px;">Quay lại</button>
+    </div>
+
+    <script>
+        // Đăng ký/Đăng nhập bằng localStorage
+        function getUsers() {
+            return JSON.parse(localStorage.getItem('users') || '{}');
+        }
+        function setUsers(users) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+        let currentUser = null;
+
+        // Xử lý đăng nhập: nếu id trùng với id vừa đăng ký thì chuyển sang trang tiếp theo
+        document.getElementById('loginForm').onsubmit = function(e) {
+            e.preventDefault();
+            const emailVal = email.value.trim();
+            const passVal = password.value.trim();
+            const users = getUsers();
+            // Kiểm tra nếu email đã đăng ký và mật khẩu đúng thì đăng nhập thành công
+            if (users[emailVal] && users[emailVal] === passVal) {
+                currentUser = emailVal;
+                showFileManager(); // Chuyển sang trang quản lý file
+            } else {
+                alert('Sai tài khoản hoặc mật khẩu!');
+            }
+        };
+
+        document.getElementById('registerBtn').onclick = function() {
+            const emailVal = email.value.trim();
+            const passVal = password.value.trim();
+            if (!emailVal || !passVal) return alert('Nhập đủ thông tin!');
+            const users = getUsers();
+            if (users[emailVal]) return alert('Email đã tồn tại!');
+            users[emailVal] = passVal;
+            setUsers(users);
+            alert('Đăng ký thành công!');
+        };
+
+        // Cấu trúc cây file/thư mục
+        function getStructure() {
+            return JSON.parse(localStorage.getItem('structure_' + currentUser) || '{"name":"root","type":"folder","children":[]}');
+        }
+        function setStructure(structure) {
+            localStorage.setItem('structure_' + currentUser, JSON.stringify(structure));
+        }
+        function getHistory() {
+            return JSON.parse(localStorage.getItem('history_' + currentUser) || '[]');
+        }
+        function setHistory(history) {
+            localStorage.setItem('history_' + currentUser, JSON.stringify(history));
+        }
+
+        // Hiển thị trang quản lý file
+        function showFileManager() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('file-manager').style.display = 'block';
+            document.getElementById('stats-page').style.display = 'none';
+            selectedFolderPath = ['root'];
+            renderTree();
+        }
+
+        // Hiển thị cây file/thư mục
+        let selectedFolderPath = ['root'];
+        function renderTree() {
+            const tree = getStructure();
+            const treeView = document.getElementById('treeView');
+            treeView.innerHTML = renderNode(tree, ['root']);
+        }
+        function renderNode(node, path) {
+            let html = '';
+            if (node.type === 'folder') {
+                const isRoot = path.length === 1;
+                const isSelected = JSON.stringify(path) === JSON.stringify(selectedFolderPath);
+                html += `<li${isSelected ? ' class="selected"' : ''}>
+                    <span class="folder" onclick="selectFolder('${path.join('/')}', this)">${node.name}</span>
+                    ${!isRoot ? `<button class="inline-btn" onclick="renameNode('${path.join('/')}')">Đổi tên</button>
+                    <button class="inline-btn" onclick="deleteNode('${path.join('/')}')">Xóa</button>` : ''}
+                    <ul style="display:${isSelected||isRoot?'block':'none'};">${(node.children||[]).map((child,i)=>renderNode(child, path.concat(child.name))).join('')}</ul>
+                </li>`;
+            } else {
+                html += `<li>
+                    <span class="file">${node.name}</span>
+                    <button class="inline-btn" onclick="renameNode('${path.join('/')}')">Đổi tên</button>
+                    <button class="inline-btn" onclick="deleteNode('${path.join('/')}')">Xóa</button>
+                </li>`;
+            }
+            return html;
+        }
+        window.selectFolder = function(pathStr, el) {
+            selectedFolderPath = pathStr.split('/');
+            renderTree();
+        };
+
+        // Thêm file/thư mục vào thư mục đang chọn
+        document.getElementById('addFileBtn').onclick = function() {
+            const name = prompt('Tên file mới:');
+            if (!name) return;
+            addNode(name, 'file');
+        };
+        document.getElementById('addFolderBtn').onclick = function() {
+            const name = prompt('Tên thư mục mới:');
+            if (!name) return;
+            addNode(name, 'folder');
+        };
+        function addNode(name, type) {
+            const tree = getStructure();
+            let node = tree;
+            for (let i = 1; i < selectedFolderPath.length; i++) {
+                node = node.children.find(child => child.name === selectedFolderPath[i] && child.type === 'folder');
+            }
+            if (!node.children) node.children = [];
+            node.children.push({name, type, children: type==='folder'?[]:undefined});
+            setStructure(tree);
+            logHistory(`Tạo ${type}: ${name} tại ${selectedFolderPath.join('/')}`);
+            renderTree();
+        }
+
+        // Đổi tên/Xóa node
+        window.renameNode = function(pathStr) {
+            const path = pathStr.split('/');
+            const tree = getStructure();
+            function find(node, idx) {
+                if (idx === path.length-1 && node.name === path[idx]) return node;
+                if (node.children) {
+                    for (const child of node.children) {
+                        const found = find(child, idx+1);
+                        if (found) return found;
+                    }
+                }
+                return null;
+            }
+            const node = find(tree, 0);
+            if (!node) return;
+            const oldName = node.name;
+            const newName = prompt('Tên mới:', oldName);
+            if (newName && newName !== oldName) {
+                logHistory(`Đổi tên ${node.type}: ${oldName} -> ${newName}`);
+                node.name = newName;
+                setStructure(tree);
+                renderTree();
+            }
+        };
+        window.deleteNode = function(pathStr) {
+            const path = pathStr.split('/');
+            const tree = getStructure();
+            function del(node, idx, parent) {
+                if (idx === path.length-1 && node.name === path[idx]) {
+                    if (parent) {
+                        parent.children = parent.children.filter(child => child !== node);
+                        logHistory(`Xóa ${node.type}: ${node.name} tại ${path.slice(0,-1).join('/')}`);
+                    }
+                    return true;
+                }
+                if (node.children) {
+                    for (const child of node.children) {
+                        if (del(child, idx+1, node)) return true;
+                    }
+                }
+                return false;
+            }
+            del(tree, 0, null);
+            setStructure(tree);
+            renderTree();
+        };
+
+        // Thống kê
+        document.getElementById('statsBtn').onclick = function() {
+            document.getElementById('file-manager').style.display = 'none';
+            document.getElementById('stats-page').style.display = 'block';
+            showStats();
+        };
+        document.getElementById('backBtn').onclick = showFileManager;
+
+        function showStats() {
+            const tree = getStructure();
+            let fileCount = 0, folderCount = 0;
+            function count(node) {
+                if (node.type === 'file') fileCount++;
+                else if (node.type === 'folder') {
+                    folderCount++;
+                    (node.children||[]).forEach(count);
+                }
+            }
+            count(tree);
+            document.getElementById('stats').innerHTML = `
+                <div>Số lượng file: <b>${fileCount}</b></div>
+                <div>Số lượng thư mục: <b>${folderCount-1}</b></div>
+            `;
+            const history = getHistory();
+            document.getElementById('history').innerHTML = `<b>Lịch sử thao tác:</b><br>${history.map(h=>`- ${h}`).join('<br>')}`;
+        }
+
+        function logHistory(action) {
+            const history = getHistory();
+            history.push(action + ' (' + new Date().toLocaleString() + ')');
+            setHistory(history);
+        }
+
+        // Đăng xuất
+        document.getElementById('logoutBtn').onclick = function() {
+            currentUser = null;
+            document.getElementById('file-manager').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
+        };
+    </script>
+</body>
+</html>
