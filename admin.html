@@ -170,6 +170,12 @@
             displayUsers(e.target.value);
         });
 
+        // Xem thống kê
+        document.getElementById('viewStats').onclick = function(e) {
+            e.preventDefault();
+            window.location.href = 'admin_stats.html';
+        };
+
         // Đăng xuất
         document.getElementById('logoutBtn').onclick = function() {
             if (confirm('Bạn có chắc muốn đăng xuất?')) {
@@ -178,7 +184,8 @@
             }
         };
 
-        // Chế độ sáng/tối - giống trang index
+        // Chế độ sáng/tối 
+        
         const themeToggle = document.getElementById('themeToggleAdmin');
         let isDarkMode = true;
 
