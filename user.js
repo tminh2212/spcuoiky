@@ -57,7 +57,7 @@
 
     /************************************************************
      *  KIỂM TRA ĐĂNG NHẬP USER
-     *  - Nếu chưa đăng nhập: quay về trang index.html
+    *  - Nếu chưa đăng nhập: quay về trang login.html
      *  - Nếu là admin: chuyển sang admin.html
      ************************************************************/
     function checkUserLogin() {
@@ -67,7 +67,7 @@
         // Không có currentUser hoặc user không tồn tại
         if (currentUser === null || users[currentUser] === undefined) {
             alert("Bạn phải đăng nhập trước!");
-            window.location.href = "index.html";
+            window.location.href = "login.html";
             return null; // báo lỗi
         }
 
@@ -713,7 +713,7 @@
         // Nút đăng xuất: xóa currentUser và quay về trang đăng nhập
         document.getElementById("logoutBtn").onclick = function () {
             localStorage.removeItem("currentUser");
-            window.location.href = "index.html";
+            window.location.href = "login.html";
         };
 
         // Nút chuyển chế độ tối/sáng
@@ -773,4 +773,3 @@
         document.getElementById("modalLikeBtn").onclick = toggleLike;
         document.getElementById("commentBtn").onclick = sendComment;
     };
-

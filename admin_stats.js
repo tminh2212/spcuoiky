@@ -30,7 +30,7 @@
             users[currentUser].role !== "admin") {
 
             alert("Bạn không có quyền truy cập trang thống kê này!");
-            window.location.href = "index.html";
+            window.location.href = "login.html";
             return null;
         }
         return currentUser;
@@ -91,7 +91,7 @@
         // Đăng xuất
         document.getElementById("logoutBtn").onclick = function () {
             localStorage.removeItem("currentUser");
-            window.location.href = "index.html";
+            window.location.href = "login.html";
         };
 
         // Chế độ sáng/tối
@@ -126,4 +126,3 @@
         setupUI();
         renderStats(admin);
     };
-

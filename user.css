@@ -38,6 +38,15 @@
 
 .form-row textarea {
     resize: vertical;
+    background-color: #1E1F20;
+    color: #C4C1C5;
+    border-color: #C4C1C5;
+}
+
+body.light-mode .form-row textarea {
+    background-color: #F5F5F5;
+    color: #333333;
+    border-color: #DADCE0;
 }
 
 /* Nút form */
@@ -333,6 +342,14 @@
     border: 1px solid #DADCE0;
     padding: 8px 10px;
     font-size: 14px;
+    background-color: #1E1F20;
+    color: #C4C1C5;
+}
+
+body.light-mode .comment-form textarea {
+    background-color: #F5F5F5;
+    color: #333333;
+    border-color: #DADCE0;
 }
 
 .btn-send {

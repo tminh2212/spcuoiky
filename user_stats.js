@@ -26,7 +26,7 @@
 
         if (currentUser === null || users[currentUser] === undefined) {
             alert("Bạn phải đăng nhập trước!");
-            window.location.href = "index.html";
+            window.location.href = "login.html";
             return null;
         }
 
@@ -125,7 +125,7 @@
     function setupUI() {
         document.getElementById("logoutBtn").onclick = function () {
             localStorage.removeItem("currentUser");
-            window.location.href = "index.html";
+            window.location.href = "login.html";
         };
 
         var btn = document.getElementById("themeToggleStats");
