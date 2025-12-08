@@ -1,0 +1,130 @@
+/* RESET CƠ BẢN */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* NỀN & FONT */
+body {
+    font-family: Arial, sans-serif;
+    background: #F1F3F4;
+    color: #202124;
+}
+
+/* BỐ CỤC TRANG */
+.page {
+    min-height: 100vh;
+}
+
+.page-box {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* HEADER TRÊN CÙNG */
+.header {
+    background: #FFFFFF;
+    padding: 20px 26px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.sub-title {
+    font-size: 14px;
+    color: #5F6368;
+    margin-top: 4px;
+}
+
+/* NHÓM NÚT BÊN PHẢI HEADER */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Nút chung */
+.btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Link “Trang nội dung” */
+.btn-link {
+    background: #FFFFFF;
+    border: 1px solid #1A73E8;
+    color: #1A73E8;
+}
+
+/* Nút Đăng xuất */
+.btn-danger {
+    background: #EA4335;
+    color: #FFFFFF;
+}
+
+/* KHUNG CHỨA CÁC Ô THỐNG KÊ */
+.card {
+    background: transparent;
+}
+
+/* HÀNG CÁC Ô THỐNG KÊ */
+.stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+/* Ô THỐNG KÊ */
+.stat-card {
+    flex: 1 1 220px;
+    background: #FFFFFF;
+    padding: 20px 22px;
+    border-radius: 24px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Tiêu đề ô */
+.stat-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Số lớn */
+.stat-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+/* Mô tả nhỏ */
+.stat-desc {
+    font-size: 13px;
+    color: #5F6368;
+}
+
+/* Danh sách chủ đề trong ô cuối */
+.topic-list {
+    margin-top: 6px;
+    padding-left: 18px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .stats-row {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trung tâm nội dung</title>
+    <link rel="stylesheet" href="user.css">
+</head>
+<body>
+<div class="page">
+    <div class="page-box">
+        <!-- HEADER -->
+        <header class="header">
+            <div>
+                <h1 class="page-title">Trung tâm nội dung</h1>
+                <p class="sub-title">Xin chào, user!</p>
+            </div>
+            <div class="header-actions">
+                <a href="user_stats.html" class="btn btn-link">Thống kê của tôi</a>
+                <button id="logoutBtn" class="btn btn-danger">Đăng xuất</button>
+            </div>
+        </header>
+
+        <!-- MAIN: 2 CỘT -->
+        <div class="box">
+        <div class="layout-two-column">
+            <!-- FORM BÊN TRÁI -->
+            <section class="column">
+                <div class="card">
+                    <h2 class="card-title">Thêm / Sửa nội dung</h2>
+
+                    <!-- hidden để biết đang sửa bài nào -->
+                    <input type="hidden" id="contentId">
+
+                    <div class="form-group">
+                        <label for="title">Tiêu đề</label>
+                        <input type="text" id="title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Chủ đề</label>
+                        <input type="text" id="topic">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Mô tả ngắn</label>
+                        <input type="text" id="description">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="visibility">Quyền hiển thị</label>
+                        <select id="visibility">
+                            <option value="public">Công khai</option>
+                            <option value="private">Riêng tư</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Nội dung chi tiết</label>
+                        <textarea id="content" rows="6"></textarea>
+                    </div>
+
+                    <div class="form-row-inline">
+                        <button id="saveBtn" class="btn btn-primary">Lưu nội dung</button>
+                        <button id="resetBtn" class="btn btn-secondary" type="button">Làm mới</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DANH SÁCH NỘI DUNG BÊN PHẢI -->
+            <section class="column">
+                <div class="card">
+                    <h2 class="card-title">Danh sách nội dung</h2>
+                    <p id="emptyMessage" class="note">Chưa có nội dung nào.</p>
+                    <div id="postList" class="post-list">
+                        <!-- JS đổ bài ở đây -->
+                    </div>
+                </div>
+
+                <!-- KHUNG XEM CHI TIẾT, LIKE, BÌNH LUẬN -->
+                <div class="card" style="margin-top: 16px;">
+                    <h2 class="card-title">Chi tiết nội dung</h2>
+                    <div id="detailBox" class="detail-box">
+                        <p class="note">Chọn một bài để xem chi tiết.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+</div>
+    <script src="user.js"></script>
+</body>
+</html>

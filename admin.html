@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang quản trị</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- HEADER TRÊN CÙNG -->
+    <div class="header">
+        <h1>Trang quản trị</h1>
+        <div class="header-right">
+            <a href="admin_stats.html">Xem thống kê</a>
+            <button type="button" id="logoutBtn" class="logout-btn">Đăng xuất</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Dòng xin chào -->
+        <p class="welcome">Xin chào, <span id="adminName">admin!</span></p>
+
+        <!-- KHUNG TRẮNG CHỨA 2 CỘT -->
+        <div class="box">
+            <div class="grid-2">
+                <!-- CỘT TRÁI: TẠO TÀI KHOẢN MỚI -->
+                <div>
+                    <h2>Tạo tài khoản mới</h2>
+                    <form id="addUserForm">
+                        <div>
+                            <label for="newUsername">Username</label>
+                            <input type="text" id="newUsername" placeholder="Nhập tên đăng nhập">
+                        </div>
+
+                        <div>
+                            <label for="newPassword">Mật khẩu</label>
+                            <input type="password" id="newPassword" placeholder="Nhập mật khẩu">
+                        </div>
+
+                        <div>
+                            <label for="newRole">Loại tài khoản</label>
+                            <select id="newRole">
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-create">Tạo tài khoản</button>
+
+                        <div id="successMessage" class="success-message" style="display:none">
+                            Tạo tài khoản thành công!
+                        </div>
+                    </form>
+                </div>
+
+                <!-- CỘT PHẢI: DANH SÁCH TÀI KHOẢN -->
+                <div>
+                    <h2>Danh sách tài khoản</h2>
+
+                    <div class="table-box">
+                        <table id="userTable">
+                            <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Loại tài khoản</th>
+                                <th>Ngày tạo</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userList">
+                            <!-- JS sẽ đổ dữ liệu vào đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

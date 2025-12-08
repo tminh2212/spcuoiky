@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê hệ thống</title>
+    <!-- CSS chung -->
+    <link rel="stylesheet" href="admin_stats.css">
+</head>
+<body>
+<div class="page">
+    <div class="page-box">
+        <header class="header">
+            <div>
+                <h1 class="page-title">Thống kê hệ thống</h1>
+                <p class="sub-title">Xin chào, admin!</p>
+            </div>
+            <div class="header-actions">
+                <a href="admin.html" class="btn btn-link">Trang admin</a>
+                <button id="logoutBtn" class="btn btn-danger">Đăng xuất</button>
+            </div>
+        </header>
+
+        <div class="card">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <h2>Tổng user</h2>
+                    <p class="stat-number" id="totalUsers">0</p>
+                    <p class="stat-desc">Số tài khoản role user</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Tổng bài viết</h2>
+                    <p class="stat-number" id="totalContents">0</p>
+                    <p class="stat-desc">Bao gồm public và private</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Bài public</h2>
+                    <p class="stat-number" id="totalPublic">0</p>
+                    <p class="stat-desc">Có thể xem bởi mọi người</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Lượt thích</h2>
+                    <p class="stat-number" id="totalLikes">0</p>
+                    <p class="stat-desc">Tổng likes toàn hệ thống</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Bình luận</h2>
+                    <p class="stat-number" id="totalComments">0</p>
+                    <p class="stat-desc">Tổng bình luận toàn hệ thống</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="admin_stats.js"></script>
+</body>
+</html>

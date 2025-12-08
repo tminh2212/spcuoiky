@@ -1,0 +1,130 @@
+/* =========================
+   RESET CƠ BẢN
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #202124;       /* nền xám đậm */
+    color: #E8EAED;
+}
+
+/* =========================
+   BỐ CỤC TRANG
+========================= */
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.page-box {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* =========================
+   CARD CHÍNH
+========================= */
+.card {
+    background: #0F0F0F;        /* khung đen bóng */
+    border-radius: 28px;
+    padding: 60px 70px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Bên trái: tiêu đề lớn + dòng mô tả (dùng pseudo) */
+.card-title {
+    flex: 1;
+    font-size: 40px;
+    font-weight: bold;
+    margin-right: 80px;
+    position: relative;
+}
+
+/* dòng “vui lòng nhập thông tin của bạn.” */
+.card-title::after {
+    content: "vui lòng nhập thông tin của bạn.";
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    color: #B0B0B0;
+    margin-top: 16px;
+}
+/* =========================
+   ẢNH CHROME
+========================= */
+.login-logo {
+    width: 90px;          
+    margin-bottom: 50px;
+    display: block;
+}
+
+/* =========================
+   FORM BÊN PHẢI
+========================= */
+#loginForm {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 28px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #E8EAED;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #5F6368;
+    background: transparent;
+    color: #E8EAED;
+    font-size: 15px;
+}
+
+/* =========================
+   HÀNG NÚT DƯỚI FORM
+========================= */
+.form-row-inline {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+/* nút chung */
+.btn {
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+/* nút Đăng nhập (xanh, giống ảnh) */
+.btn-primary {
+    background: #AECBFA;
+    color: #000;
+    font-weight: 600;
+}
+
+/* nút Đăng ký tài khoản User (chữ xanh, nền trong suốt) */
+.btn-secondary {
+    background: transparent;
+    color: #8AB4F8;
+}

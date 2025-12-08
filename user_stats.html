@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê hệ thống</title>
+    <link rel="stylesheet" href="user_stats.css">
+</head>
+<body>
+<div class="page">
+    <div class="page-box">
+        <header class="header">
+            <div>
+                <h1 class="page-title">Thống kê nội dung của tôi</h1>
+                <p class="sub-title">Xin chào, user!</p>
+            </div>
+            <div class="header-actions">
+                <a href="user.html" class="btn btn-link">Trang nội dung</a>
+                <button id="logoutBtn" class="btn btn-danger">Đăng xuất</button>
+            </div>
+        </header>
+
+        <div class="card">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <h2>Tổng bài của tôi</h2>
+                    <p class="stat-number" id="totalMy">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Bài public</h2>
+                    <p class="stat-number" id="myPublic">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Bài private</h2>
+                    <p class="stat-number" id="myPrivate">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Lượt thích nhận</h2>
+                    <p class="stat-number" id="myLikes">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Bình luận nhận</h2>
+                    <p class="stat-number" id="myComments">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Theo chủ đề</h2>
+                    <ul id="topicList" class="topic-list">
+                        <!-- JS đổ ra -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="user_stats.js"></script>
+</body>
+</html>
