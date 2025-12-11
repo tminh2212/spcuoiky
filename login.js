@@ -52,7 +52,11 @@ function xuLyDangKy() {
 
     // Kiểm tra rỗng
     if (tendn === "" || mk === "") {
-        alert("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
+        if (oThongBao) {
+            oThongBao.textContent = "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!";
+            oThongBao.className = "tb-dangky";
+            oThongBao.style.color = "#D93025"; // đỏ lỗi
+        }
         return;
     }
 
@@ -61,7 +65,11 @@ function xuLyDangKy() {
 
     // Kiểm tra trùng tên
     if (ds[tendn]) {
-        alert("Tên đăng nhập đã tồn tại!");
+        if (oThongBao) {
+            oThongBao.textContent = "Tên đăng nhập đã tồn tại!";
+            oThongBao.className = "tb-dangky";
+            oThongBao.style.color = "#D93025";
+        }
         return;
     }
 
@@ -78,7 +86,8 @@ function xuLyDangKy() {
     // Hiện thông báo đăng ký thành công ngay dưới form
     if (oThongBao) {
         oThongBao.textContent = "Đăng ký thành công! Bạn có thể đăng nhập.";
-        oThongBao.className="tb-dangky";
+        oThongBao.className = "tb-dangky";
+        oThongBao.style.color = "#34A853"; // xanh thành công
     }
 }
 
@@ -93,20 +102,35 @@ function xuLyDangNhap(suKien) {
     var tendn = document.getElementById("tendangnhap").value.trim();
     var matkhau = document.getElementById("matkhaudangnhap").value.trim();
 
+    var oThongBao = document.getElementById("tbDangKy");
+    if (oThongBao) {
+        oThongBao.textContent = "";
+        oThongBao.className = "tb-dangky";
+    }
+
     if (tendn === "" || matkhau === "") {
-        alert("Vui lòng nhập đầy đủ thông tin!");
+        if (oThongBao) {
+            oThongBao.textContent = "Vui lòng nhập đầy đủ thông tin!";
+            oThongBao.style.color = "#D93025";
+        }
         return;
     }
 
     var ds = layDanhSachNguoiDung();
 
     if (!ds[tendn]) {
-        alert("Tài khoản không tồn tại!");
+        if (oThongBao) {
+            oThongBao.textContent = "Tài khoản không tồn tại!";
+            oThongBao.style.color = "#D93025";
+        }
         return;
     }
 
     if (ds[tendn].matkhau !== matkhau) {
-        alert("Sai mật khẩu!");
+        if (oThongBao) {
+            oThongBao.textContent = "Sai mật khẩu!";
+            oThongBao.style.color = "#D93025";
+        }
         return;
     }
 
