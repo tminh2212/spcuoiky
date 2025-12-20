@@ -26,7 +26,7 @@ function kiemTraQuyenUser() {
 
     if (!ten || !ds[ten] || ds[ten].vaitro !== "user") {
         alert("Chỉ tài khoản USER mới được vào trang này!");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 } 
 // Lấy mã nội dung tiếp theo (tăng dần)
@@ -415,7 +415,7 @@ function guiBinhLuan() {
 
 function dangXuat() {
     localStorage.removeItem("nguoidunghientai");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 /************** KHỞI TẠO TRANG **************/

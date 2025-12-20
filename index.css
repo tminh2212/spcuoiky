@@ -1,0 +1,182 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Nền trang */
+body {
+    font-family: Arial, sans-serif;
+    background: #F1F3F4;
+}
+
+/* Khung ngoài */
+.trang {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Khung giữa */
+.hoptrang {
+    width: 1100px;
+    max-width: 95vw;
+    height: 400px;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* Thẻ trắng */
+.the {
+    background: #FFFFFF;
+    padding: 10px 30px;
+    width: 100%;
+    min-height: 100%;
+    border-radius: 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    gap: 48px;
+    align-items: center;
+}
+
+/* Logo trên form */
+.anhlogo {
+    display: flex;
+    width: 80px;
+    margin-top: -150px;
+    margin-bottom: 20px;
+}
+
+.cottrai {
+    width: 44%;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+/* Tiêu đề thẻ */
+.tieudethe {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.mota {
+    font-size: 15px;
+    color: #202124;
+}
+
+/* Nhóm form (label + input) */
+.cotphai {
+    flex: 1;
+}
+
+.nhomform {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+/* Label */
+.nhomform label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #202124;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Ô nhập liệu */
+.nhomform input {
+    width: 100%;
+    height: 50px;
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    border-radius: 9px;
+    border: 1px solid #DADCE0;
+    font-size: 17px;
+}
+
+/* Hàng nút */
+.hangnut {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Nút chung */
+.nut {
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Nút chính (Đăng nhập) */
+.nutchinh {
+    background: #1A73E8;
+    color: white;
+}
+.nutchinh:hover {
+    background: #1669d6;
+}
+
+/* Nút phụ (Đăng ký) */
+.nutphu {
+    background: #FFFFFF;
+    border: 1px solid #e7e9ed;
+    color: #202124;
+}
+.nutphu:hover {
+    background: #f7f9ff;
+    border-color: #c5c9d0;
+    color: #0b57d0;
+}
+/* Thông báo đăng ký thành công (hiện dưới nút đăng ký) */
+.tb-dangky {
+    margin: 6px 0 0;
+    color: #34A853;
+    font-size: 14px;
+}
+
+/* Link chuyển đổi giữa đăng nhập và đăng ký */
+.link-chuyen {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #5F6368;
+}
+
+.link-chuyen a {
+    color: #1A73E8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link-chuyen a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .the {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cottrai, .cotphai {
+        width: 100%;
+    }
+
+    .hangnut {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hoptrang {
+        height: 540px;
+    }
+}

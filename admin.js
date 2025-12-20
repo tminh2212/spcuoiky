@@ -25,7 +25,7 @@ function kiemTraQuyenAdmin() {
 
     if (!ten || !ds[ten] || ds[ten].vaitro !== "admin") {
         alert("Bạn không có quyền truy cập trang ADMIN!");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 }
 /************** HIỂN THỊ DANH SÁCH TÀI KHOẢN **************/
@@ -147,7 +147,7 @@ function xoaTaiKhoan(tenDangNhap) {
 
 function dangXuat() {
     localStorage.removeItem("nguoidunghientai");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 /************** KHỞI TẠO TRANG **************/

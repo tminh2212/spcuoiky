@@ -23,7 +23,7 @@ function kiemTraQuyenUser() {
 
     if (!ten || !dsNguoiDung[ten] || dsNguoiDung[ten].vaitro !== "user") {
         alert("Bạn không có quyền truy cập thống kê USER!");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 }
 
@@ -116,7 +116,7 @@ function veThongKeNguoiDung(tenNguoiDung) {
 
 function dangXuat() {
     localStorage.removeItem("nguoidunghientai");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 /************** KHỞI TẠO TRANG **************/

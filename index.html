@@ -1,0 +1,80 @@
+<!--Alololo-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm cuối kỳ</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Trang đăng nhập/đăng ký -->
+    <div class="trang">
+        <div class="hoptrang">
+            <!-- Form Đăng nhập -->
+            <div class="the" id="formDangNhap">
+                <div class="cottrai">
+                    <img class="anhlogo" src="chrome.png" alt="Logo">
+                    <h2 class="tieudethe">Đăng nhập</h2>
+                    <p class="mota">Vui lòng nhập thông tin của bạn.</p>
+                </div>
+
+                <div class="cotphai">
+                    <form id="formdangnhap">
+                        <div class="nhomform">
+                            <label for="tendangnhap">Tên đăng nhập</label>
+                            <input type="text" id="tendangnhap" placeholder="Nhập tên đăng nhập">
+                        </div>
+
+                        <div class="nhomform">
+                            <label for="matkhaudangnhap">Mật khẩu</label>
+                            <input type="password" id="matkhaudangnhap" placeholder="Nhập mật khẩu">
+                        </div>
+
+                        <p id="tbDangNhap" class="tb-dangky"></p>
+
+                        <div class="hangnut">
+                            <button type="submit" class="nut nutchinh">Đăng nhập</button>
+                        </div>
+                        
+                        <p class="link-chuyen">Chưa có tài khoản? <a href="#" id="chuyenDangKy">Đăng ký ngay</a></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Form Đăng ký -->
+            <div class="the" id="formDangKy" style="display: none;">
+                <div class="cottrai">
+                    <img class="anhlogo" src="chrome.png" alt="Logo">
+                    <h2 class="tieudethe">Đăng ký</h2>
+                    <p class="mota">Tạo tài khoản mới của bạn.</p>
+                </div>
+
+                <div class="cotphai">
+                    <form id="formdangky">
+                        <div class="nhomform">
+                            <label for="tendangnhapdk">Tên đăng nhập</label>
+                            <input type="text" id="tendangnhapdk" placeholder="Nhập tên đăng nhập">
+                        </div>
+
+                        <div class="nhomform">
+                            <label for="matkhaudangky">Mật khẩu</label>
+                            <input type="password" id="matkhaudangky" placeholder="Nhập mật khẩu">
+                        </div>
+
+                        <p id="tbDangKy" class="tb-dangky"></p>
+
+                        <div class="hangnut">
+                            <button type="submit" class="nut nutchinh">Đăng ký</button>
+                        </div>
+                        
+                        <p class="link-chuyen">Đã có tài khoản? <a href="#" id="chuyenDangNhap">Đăng nhập</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
