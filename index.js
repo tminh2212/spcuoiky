@@ -1,4 +1,4 @@
-/****************** HỖ TRỢ LOCALSTORAGE ******************/
+/****************** LOCALSTORAGE ******************/
 
 // Lấy danh sách người dùng từ localStorage
 function layDanhSachNguoiDung() {
@@ -20,7 +20,7 @@ function luuNguoiDungHienTai(tendangnhap) {
 }
 
 
-/****************** KHỞI TẠO ADMIN MẶC ĐỊNH ******************/
+/****************** KHỞI TẠO TÀI KHOẢN ADMIN MẶC ĐỊNH ******************/
 
 function khoiTaoAdminMacDinh() {
     var ds = layDanhSachNguoiDung();
@@ -57,15 +57,14 @@ function xuLyDangKy(suKien) {
         if (oThongBao) {
             oThongBao.textContent = "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!";
             oThongBao.className = "tb-dangky";
-            oThongBao.style.color = "#D93025"; // đỏ lỗi
+            oThongBao.style.color = "#D93025";
         }
         return;
     }
 
-    // Lấy danh sách người dùng từ localStorage
+    // Kiểm tra trùng tên
     var ds = layDanhSachNguoiDung();
 
-    // Kiểm tra trùng tên
     if (ds[tendn]) {
         if (oThongBao) {
             oThongBao.textContent = "Tên đăng nhập đã tồn tại!";

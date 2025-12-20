@@ -23,7 +23,7 @@ body {
 .hoptrang {
     width: 1100px;
     max-width: 95vw;
-    height: 400px;
+    min-height: 400px;
     padding: 10px;
     display: flex;
     align-items: flex-start;
@@ -38,9 +38,10 @@ body {
     min-height: 100%;
     border-radius: 40px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    display: flex;
-    gap: 48px;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    align-items: flex-start;
 }
 
 /* Logo trên form */
@@ -52,7 +53,7 @@ body {
 }
 
 .cottrai {
-    width: 44%;
+    width: 100%;
     text-align: left;
     margin-bottom: 5px;
 }
@@ -70,7 +71,7 @@ body {
 
 /* Nhóm form (label + input) */
 .cotphai {
-    flex: 1;
+    width: 100%;
 }
 
 .nhomform {
@@ -160,23 +161,3 @@ body {
     text-decoration: underline;
 }
 
-@media (max-width: 900px) {
-    .the {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .cottrai, .cotphai {
-        width: 100%;
-    }
-
-    .hangnut {
-        justify-content: flex-end;
-    }
-}
-
-@media (max-width: 1200px) {
-    .hoptrang {
-        height: 540px;
-    }
-}
